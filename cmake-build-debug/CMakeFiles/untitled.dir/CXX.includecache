@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/Base/Desktop/UNI/Objektinis programavimas/untitled/SuperVector.h
+
+C:/Users/Base/Desktop/UNI/Objektinis programavimas/untitled/main.cpp
+iostream
+-
+chrono
+-
+SuperVector.h
+C:/Users/Base/Desktop/UNI/Objektinis programavimas/untitled/SuperVector.h
+
