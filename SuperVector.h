@@ -30,6 +30,7 @@ template <typename T>
         iterator insert(const_iterator, const T&);
         iterator insert(const_iterator, std::initializer_list<T>);
         iterator erase(const_iterator pos);
+        iterator erase(const_iterator start, const_iterator stop);
 
         //MODIFY ELEMENTS
         void push_back(T &&);
@@ -236,10 +237,8 @@ template <typename T>
             x++;
         }
     }
-    //EMPLACE
-    template <typename T>
 
-    //ERASE?
+    //ERASE
     template <typename T>
     typename vector<T>::iterator vector<T>::erase(typename vector<T>::const_iterator pos) {
         T *temp_arr = new T[reserved_size];
@@ -251,12 +250,28 @@ template <typename T>
         x = 0;
         vector_size--;
 
-        arr[pos-begin()].~T();
-        for(auto i = pos - begin()+1; i < size(); i++) {
-            arr[i] = temp_arr[x];
+        for(auto i = pos - begin(); i < size(); i++) {
+            arr[i] = temp_arr[x+1];
             x++;
         }
     }
+template <typename T>  //ERASE FROM-TO (START STOP)
+typename vector<T>::iterator vector<T>::erase(typename vector<T>::const_iterator start, typename vector<T>::const_iterator stop) {
+    T *temp_arr = new T[reserved_size];
+    int x = 0;
+    for(auto i = start - begin(); i < size(); i++) {
+        temp_arr[x] = arr[i];
+        x++;
+    }
+    x = 0;
+
+    for(auto i = start - begin(); i < size(); i++) {
+        arr[i] = temp_arr[stop-start+x];
+        x++;
+    }
+    vector_size = vector_size-(stop-start);
+}
+
 
 
     //LOGICAL OPERATORS
